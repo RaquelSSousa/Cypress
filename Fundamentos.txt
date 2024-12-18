@@ -1,0 +1,11 @@
+- Navegando para url - visite
+- Por meio da linha de comando, o Cypress é executado sem cabeça no electron
+- Atualiza configurações em cypress.json que substitui o comportamento existente
+- Suporta apenas seletores CSS
+- Podemos ver o que aconteceu em cada etapa com captura de tela e mensagens de erro
+- Como lidar com clique, tipo, texto ()
+- Iterando sobre o conjunto de elementos da web usando cada
+- O Cypress é assíncrono por natureza e não há garantia na sequência de execução, mas cuida disso
+- A promessa vem com rejeição (não passou), resolvida (passou), pendente (ainda não foi executada) --> then()
+- Comandos que não são do cypress, não podem resolver promessas por si mesmos. Precisamos resolvê-lo manualmente com o then()
+- Alias para reusar localizadores

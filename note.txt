@@ -1,9 +1,0 @@
-- navegando para url - visite
-- por meio da linha de comando, o Cypress é executado sem cabeça no electron
-- Atualiza configurações em cypress.json que substitui o comportamento existente
-- Suporta apenas seletores CSS
-- Podemos ver o que aconteceu em cada etapa com captura de tela e mensagens de erro
-- como lidar com clique, tipo, texto ()
-- iterando sobre o conjunto de elementos da web usando cada
-- O Cypress é assíncrono por natureza e não há garantia na sequência de execução, mas cuida disso
-- a promessa vem com rejeição (não passou), resolvida (passou), pendente (ainda não foi executada) --> then()
