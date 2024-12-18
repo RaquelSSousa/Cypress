@@ -9,7 +9,7 @@
 
 //describe é uma função que cria um bloco de testes, o primeiro parâmetro é o nome do bloco, o segundo parâmetro é uma função que contém os testes
 // => é uma função de flecha, uma função de flecha é uma forma mais curta de escrever uma função, ela é equivalente a: function() {}
-describe('TESTE', () => {
+describe('PRIMEIRO TESTE', () => {
 
     //it é uma função que cria um caso de teste
     it('TESTE 1', () => {

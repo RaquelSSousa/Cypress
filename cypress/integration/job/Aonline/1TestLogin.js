@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Teste de Login', () => {
+describe('Teste de Login Aluno Online', () => {
   // Antes de cada teste, visita a página de login
   beforeEach(() => {
     cy.fixture('urls').then((url) => {
