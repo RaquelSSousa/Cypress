@@ -3,6 +3,10 @@
 import 'cypress-iframe';  // Importa o cypress-iframe no início do arquivo
 
 describe('Teste de Login Conline', () => {
+
+  // Variável global para armazenar a URL
+  let savedUrl;
+
   // Antes de cada teste, visita a página de login
   beforeEach(() => {
     cy.fixture('urls').then((url) => {
@@ -23,30 +27,77 @@ describe('Teste de Login Conline', () => {
   });
 
   it ('Deve acessar Conline do Relatório de Alunos Trancados', () => {
-    cy.get('.iframeped01')
+    cy.get('.iframeped01[name="iframe04"]') // seleciona o iframe
+      .should('be.visible') //espera i iframe ficar visivel
       .its('0.contentDocument.body') // acessa o corpo do iframe
-      .should('be.visible')
-      .find('a.qMargin').contains('Relatório de Alunos Trancados').click();
+      .should('be.visible') // espera o corpo do iframe ficar visivel
+      .find('a.qMargin').contains('Relatório de Alunos Trancados') // .click(); // seleciona o link e clica
+      .then(($link) => {
+        const href = $link.attr('href');  // Captura o atributo 'href' diretamente
+        savedUrl = href;  // Salva a URL
+        Cypress.env('savedUrl', savedUrl);  // Armazena a URL no Cypress.env
+        cy.log('URL do relatório: ' + savedUrl);  // Mostra a URL capturada
+      });    
+  });
+
+  it('Abertura SIS UNI via request', () => {
+    const savedUrl = Cypress.env('savedUrl'); // Acessa a URL salva
+    cy.log('URL capturada: ' + savedUrl);
   
-  });
+    // Adiciona o domínio completo caso a URL esteja em formato relativo
+    const fullUrl = 'https://online.iesb.br' + savedUrl;  // Concatena o domínio com a URL relativa
+    cy.log('URL completa: ' + fullUrl);
+  
+    // Envia uma solicitação HTTP com a URL do token
+    cy.request(fullUrl).then((response) => {
+      // Verifica a resposta do servidor
+      expect(response.status).to.eq(200);  // Verifica se a solicitação foi bem-sucedida
+  
+      // Loga a resposta completa para inspeção
+      cy.log('Resposta completa:', JSON.stringify(response.body));
+  
+      // Verifica se a URL de redirecionamento existe na resposta
+      const redirectUrl = response.body.redirectUrl;
+      if (redirectUrl) {
+        cy.visit(redirectUrl);  // Visita a URL de redirecionamento
+      } else {
+        cy.log('Redirecionamento não encontrado. Visitando a URL original.');
+        cy.visit(fullUrl);  // Visita a URL original diretamente caso o redirecionamento não seja encontrado
+      }
+    });
 
-  it('Deve acessar a nova aba e verificar o conteúdo', () => {
-    // Captura o link que abre a nova aba
-    cy.get('a.qMargin')
-      .contains('Relatório de Alunos Trancados')
-      .invoke('attr', 'href') // Obtém o href do link
-      .then((href) => {
-        // Visita o link diretamente, sem abrir uma nova aba
-        cy.visit(href);
-        
-        // Aguardar 5 segundos para garantir que a página tenha carregado
-        cy.wait(5000); 
-
-        // Agora você pode interagir com a nova página
-        cy.url().should('include', 'relatorio-de-alunos-trancados'); // Verifique se está na página correta
-        cy.get('h1').should('contain', 'Relatório de Alunos Trancados'); // Verifique o conteúdo da nova página
-      });
+    // Verifica se a página contém o texto esperado
+    cy.get('form.content-start').contains('Relatório de Alunos Trancados').should('be.visible');
   });
+  
+  
+
+
+  // // O sis uni deve abrir o link do relatório de alunos trancados
+  // it('Abertura SIS UNI', () => {
+  //   const savedUrl = Cypress.env('savedUrl'); // Acessa a URL salva
+  //   cy.log('URL capturada: ' + savedUrl);
+  
+  //   // Envia uma solicitação HTTP com a URL do token
+  //   cy.request(savedUrl).then((response) => {
+  //     // Verifica a resposta do servidor
+  //     expect(response.status).to.eq(200);  // Verifica se a solicitação foi bem-sucedida
+  
+  //     // Agora você pode extrair o conteúdo ou fazer mais verificações
+  //     // (Por exemplo, se você precisa navegar para uma página específica após o request)
+  //     cy.visit(response.body.redirectUrl);  // Acessa a URL de redirecionamento, se necessário
+
+
+  //   // // Acessa a URL salva
+  //   // const savedUrl = Cypress.env('savedUrl');
+
+  //   // // Visita a URL salva
+  //   // cy.visit(savedUrl);
+
+
+
+  //   });
+  // });
   
 
 });

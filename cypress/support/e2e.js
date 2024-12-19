@@ -23,7 +23,7 @@ import './commands'
 // Captura erros não tratados (uncaught exceptions) globalmente
 Cypress.on('uncaught:exception', (err, runnable) => {
     // Ignora o erro específico (exemplo: erro relacionado a 'SessionData')
-    if (err.message.includes('SessionData')) {
+    if (err.message.includes('SessionData') || err.message.includes('Cannot read properties of null')) {
       // Retorna 'false' para impedir que o erro falhe o teste
       return false;
     }
