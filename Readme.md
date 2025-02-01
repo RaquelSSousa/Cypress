@@ -13,12 +13,12 @@
 
 <p>This project is focused on automating E2E tests that validate:</p>
 
-* User login functionality.
+* User login functionality
 
-* Report generation with pre-configured filters.
+* Report generation with pre-configured filters
 
 <p>For more details about my work, visit my 
-<a href = "https://raquelssousa.github.io/Portifolio/">Portifolio Site</a></p>
+<a href = "https://raquelssousa.github.io/Portifolio/">portfolio Website</a></p>
 
 ### Contact Information
 
