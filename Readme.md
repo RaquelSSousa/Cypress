@@ -1,19 +1,22 @@
-<h1 align="center">Raquel S. Sousa - Cypress Project</h1>
+<h1 align="center">Raquel Sousa - Cypress Project</h1>
 
 ### Welcome to my Cypress testing repository!
 
 ### Instalation
 
 <p>Before you start, ensure that you have Node.js installed on your machine.</p>
-<p>Run the following command in your project directory: ```npm install cypress --sabe-dev```</p>
+<p>Run the following command in your project directory: </p>
+
+`npm install cypress --sabe-dev`
 
 ### Project Description
 
 <p>This project is focused on automating E2E tests that validate:</p>
-<ul>
-    <ui>User login functionality</ui>
-    <ui>Report generation with pre-configured filters</ui>
-</ul>
+
+* User login functionality.
+
+* Report generation with pre-configured filters.
+
 <p>For more details about my work, visit my 
 <a href = "https://raquelssousa.github.io/Portifolio/">Portifolio Site</a></p>
 
