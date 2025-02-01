@@ -1,4 +1,4 @@
-<h1 align="center">Raquel Sousa - Cypress Project</h1>
+<h1 align="center">Raquel Sousa</h1>
 
 ### Welcome to my Cypress testing repository!
 
